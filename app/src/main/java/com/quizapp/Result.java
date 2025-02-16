@@ -32,7 +32,7 @@ public class Result extends AppCompatActivity {
         Intent intent = getIntent();
         score = intent.getIntExtra("SCORE", 0);
         totalQuestions = intent.getIntExtra("TOTAL_QUESTIONS", 10);
-        name = intent.getStringExtra("name");
+        name = intent.getStringExtra("USERNAME");
 
         // Set the score text
         scoreText.setText(name + ", you scored " + score + "/" + totalQuestions);
@@ -49,7 +49,7 @@ public class Result extends AppCompatActivity {
         exitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finishAffinity(); // Closes all activities and exits the app
+                finish(); // Closes all activities and exits the app
             }
         });
     }

@@ -35,7 +35,8 @@ public class Quiz extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz);
-
+        Intent receivedIntent = getIntent();
+        String name = receivedIntent.getStringExtra("name");
         questionView = findViewById(R.id.questionView);
         questionIndicator = findViewById(R.id.questionIndicator);
         optionsGroup = findViewById(R.id.optionsGroup);
@@ -64,7 +65,7 @@ public class Quiz extends AppCompatActivity {
                 Intent intent = new Intent(Quiz.this, Result.class);
                 intent.putExtra("SCORE", 0);
                 intent.putExtra("TOTAL_QUESTIONS", questions.length);
-                intent.putExtra("USERNAME", intent.getExtras("name").toString());
+                intent.putExtra("USERNAME", name);
                 startActivity(intent);
                 finish();
             }
