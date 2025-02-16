@@ -1,6 +1,11 @@
 package com.quizapp;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.ImageView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,6 +15,8 @@ import androidx.core.view.WindowInsetsCompat;
 
 public class MainActivity extends AppCompatActivity {
 
+    ImageView logo;
+    Animation fadeIn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -20,5 +27,22 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        init();
+        logo.setAnimation(fadeIn);
+        new Handler()
+                .postDelayed(()->{
+                    startActivity(
+                            new Intent(
+                                    MainActivity.this,
+                                    Home.class
+                            )
+                    );
+                    finish();
+                },3000);
+    }
+    private void init(){
+        logo = findViewById(R.id.logo);
+        fadeIn = AnimationUtils.loadAnimation(this,R.anim.fade_in);
     }
 }
