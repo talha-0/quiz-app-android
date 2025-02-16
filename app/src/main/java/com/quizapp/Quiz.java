@@ -1,5 +1,6 @@
 package com.quizapp;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Gravity;
@@ -41,32 +42,34 @@ public class Quiz extends AppCompatActivity {
         nextButton = findViewById(R.id.nextButton);
         prevButton = findViewById(R.id.prevButton);
 
-        loadQuestion(); // Load first question
+        loadQuestion();
 
-        // Handle option selection
         optionsGroup.setOnCheckedChangeListener((group, checkedId) -> {
             for (int i = 0; i < optionsGroup.getChildCount(); i++) {
                 RadioButton rb = (RadioButton) optionsGroup.getChildAt(i);
                 if (rb.getId() == checkedId) {
                     selectedAnswerIndex = i;
-                    rb.setBackgroundColor(Color.parseColor("#B0D9B1")); // Green when selected
+                    rb.setBackgroundColor(Color.parseColor("#B0D9B1"));
                 } else {
-                    rb.setBackgroundColor(Color.WHITE); // Reset others
+                    rb.setBackgroundColor(Color.WHITE);
                 }
             }
         });
 
-        // Handle "Next" button
         nextButton.setOnClickListener(v -> {
             if (currentQuestionIndex < questions.length - 1) {
                 currentQuestionIndex++;
                 loadQuestion();
             } else {
-                Toast.makeText(this, "Quiz Finished!", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(Quiz.this, Result.class);
+                intent.putExtra("SCORE", 0);
+                intent.putExtra("TOTAL_QUESTIONS", questions.length);
+                intent.putExtra("USERNAME", intent.getExtras("name").toString());
+                startActivity(intent);
+                finish();
             }
         });
 
-        // Handle "Previous" button
         prevButton.setOnClickListener(v -> {
             if (currentQuestionIndex > 0) {
                 currentQuestionIndex--;
@@ -91,11 +94,8 @@ public class Quiz extends AppCompatActivity {
             rb.setLayoutParams(new RadioGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
             optionsGroup.addView(rb);
         }
-
-        // Hide "Previous" button on first question
         prevButton.setVisibility(currentQuestionIndex == 0 ? View.GONE : View.VISIBLE);
 
-        // Change "Next" to "Finish" on the last question
         nextButton.setText(currentQuestionIndex == questions.length - 1 ? "Finish" : "Next");
     }
 }
