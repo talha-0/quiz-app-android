@@ -1,10 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="#D5D5D5"
+    android:id="@+id/main"
     tools:context=".Result">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <!-- Scoreboard Title -->
+    <TextView
+        android:id="@+id/scoreboardTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/scoreboard"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:textColor="#004D40"
+        android:layout_marginBottom="20dp"/>
+
+    <!-- Display Username & Score -->
+    <TextView
+        android:id="@+id/scoreText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="John Doe, you scored 6/10"
+        android:textSize="20sp"
+        android:textColor="#000000"
+        android:textStyle="bold"
+        android:layout_marginBottom="30dp"/>
+
+    <!-- Share Button -->
+    <Button
+        android:id="@+id/shareButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Share your score"
+        android:padding="12dp"
+        android:backgroundTint="#004D40"
+        android:textColor="@android:color/white"
+        android:textStyle="bold"
+        android:layout_marginBottom="20dp"/>
+
+    <!-- Exit Button to Close App -->
+    <Button
+        android:id="@+id/exitButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Exit"
+        android:padding="12dp"
+        android:backgroundTint="#D32F2F"
+        android:textColor="@android:color/white"
+        android:textStyle="bold"/>
+
+</LinearLayout>
